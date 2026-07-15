@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kenny Brown — Senior Software Developer & AI Prompt Engineer</title>
+<meta name="description" content="Senior software developer (20+ yrs, C#/.NET, Angular, TypeScript) now building AI agents and prompt-engineering pipelines. Available for freelance & consulting.">
+<link rel="canonical" href="https://kennylbrown.com/">
+<meta name="author" content="Kenny Brown">
+<meta name="theme-color" content="#0a0e13" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef2f3" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kennylbrown.com/">
+<meta property="og:site_name" content="Kenny Brown">
+<meta property="og:title" content="Kenny Brown — Senior Software Developer & AI Prompt Engineer">
+<meta property="og:description" content="Senior software developer (20+ yrs, C#/.NET, Angular, TypeScript) now building AI agents and prompt-engineering pipelines. Available for freelance & consulting.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kenny Brown — Senior Software Developer & AI Prompt Engineer">
+<meta name="twitter:description" content="Senior software developer (20+ yrs, C#/.NET, Angular, TypeScript) now building AI agents and prompt-engineering pipelines. Available for freelance & consulting.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+<style>
+  /* ============================================================
+     Kenny Brown — profile  ·  kennylbrown.com
+     Concept: "operator console" — mono = machine voice (labels,
+     data, headings), humanist sans = human voice (prose).
+     Committed dark identity; fully legible light theme.
+     ============================================================ */
+
+  :root {
+    --font-mono: ui-monospace, "SF Mono", "SFMono-Regular", "Cascadia Code",
+                 "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    /* LIGHT baseline (cool neutrals, biased toward the teal accent) */
+    --ground:      #eef2f3;
+    --surface:     #ffffff;
+    --surface-2:   #f5f8f9;
+    --border:      #d5dee1;
+    --border-strong:#b9c6cb;
+    --text:        #0e1519;
+    --muted:       #4f5d64;
+    --faint:       #7a8890;
+    --accent:      #0a8f7e;   /* teal-cyan signal */
+    --accent-soft: #0a8f7e1a;
+    --action:      #b46a06;   /* warm amber — the commercial CTA */
+    --action-ink:  #ffffff;
+    --grid:        #0e151902;
+    --shadow:      0 1px 2px rgba(14,21,25,.06), 0 8px 24px rgba(14,21,25,.06);
+
+    --maxw: 1080px;
+    --step--1: clamp(.78rem, .76rem + .1vw, .84rem);
+    --step-0:  clamp(1rem, .97rem + .16vw, 1.09rem);
+    --step-1:  clamp(1.2rem, 1.1rem + .4vw, 1.4rem);
+    --step-2:  clamp(1.5rem, 1.25rem + 1vw, 2.1rem);
+    --step-3:  clamp(2.4rem, 1.6rem + 3.6vw, 4.6rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:      #0a0e13;
+      --surface:     #10161d;
+      --surface-2:   #131b23;
+      --border:      #1f2a33;
+      --border-strong:#2c3a45;
+      --text:        #d8e2e9;
+      --muted:       #93a2ad;
+      --faint:       #64727c;
+      --accent:      #2fd7bf;   /* teal-cyan signal */
+      --accent-soft: #2fd7bf1f;
+      --action:      #f6b24a;   /* warm amber */
+      --action-ink:  #1a1206;
+      --grid:        #ffffff05;
+      --shadow:      0 1px 2px rgba(0,0,0,.4), 0 12px 40px rgba(0,0,0,.35);
+    }
+  }
+
+  /* Explicit toggle overrides — must win over the media query both ways */
+  :root[data-theme="light"] {
+    --ground:#eef2f3; --surface:#ffffff; --surface-2:#f5f8f9; --border:#d5dee1;
+    --border-strong:#b9c6cb; --text:#0e1519; --muted:#4f5d64; --faint:#7a8890;
+    --accent:#0a8f7e; --accent-soft:#0a8f7e1a; --action:#b46a06; --action-ink:#ffffff;
+    --grid:#0e151902; --shadow:0 1px 2px rgba(14,21,25,.06),0 8px 24px rgba(14,21,25,.06);
+  }
+  :root[data-theme="dark"] {
+    --ground:#0a0e13; --surface:#10161d; --surface-2:#131b23; --border:#1f2a33;
+    --border-strong:#2c3a45; --text:#d8e2e9; --muted:#93a2ad; --faint:#64727c;
+    --accent:#2fd7bf; --accent-soft:#2fd7bf1f; --action:#f6b24a; --action-ink:#1a1206;
+    --grid:#ffffff05; --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 40px rgba(0,0,0,.35);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: clamp(1.1rem, 4vw, 2.5rem); }
+
+  .mono { font-family: var(--font-mono); }
+
+  /* ---------- top nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--ground) 82%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; gap: 1rem;
+    height: 56px;
+  }
+  .brand {
+    font-family: var(--font-mono); font-weight: 600; font-size: var(--step--1);
+    letter-spacing: .02em; color: var(--text); white-space: nowrap;
+  }
+  .brand .dot { color: var(--accent); }
+  .nav-links { display: flex; gap: .25rem; margin-left: auto; align-items: center; }
+  .nav-links a {
+    font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted);
+    padding: .35rem .55rem; border-radius: 4px; letter-spacing: .01em;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+  .nav-links a.active { color: var(--accent); }
+  .nav-links a.nav-hide { }
+  .theme-btn {
+    font-family: var(--font-mono); font-size: var(--step--1);
+    background: var(--surface); color: var(--muted);
+    border: 1px solid var(--border); border-radius: 5px;
+    padding: .35rem .55rem; cursor: pointer; line-height: 1;
+    display: inline-flex; align-items: center; gap: .4rem;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--border-strong); }
+  @media (max-width: 640px) { .nav-links a.nav-hide { display: none; } }
+
+  /* ---------- shared section chrome ---------- */
+  section { padding-block: clamp(3rem, 8vw, 5.5rem); border-top: 1px solid var(--border); }
+  #home { border-top: 0; }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: var(--step--1); color: var(--accent);
+    letter-spacing: .04em; margin-bottom: 1.4rem; display: flex; align-items: center; gap: .6rem;
+  }
+  .eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+  h2 {
+    font-family: var(--font-mono); font-weight: 600; font-size: var(--step-2);
+    letter-spacing: -.015em; margin: 0 0 1rem; text-wrap: balance; line-height: 1.15;
+  }
+  .lede { color: var(--muted); max-width: 62ch; }
+
+  /* ---------- hero ---------- */
+  #home { padding-top: clamp(3.5rem, 9vw, 6.5rem); }
+  .hero-eyebrow {
+    font-family: var(--font-mono); font-size: var(--step--1); color: var(--faint);
+    letter-spacing: .02em; margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow .prompt { color: var(--accent); }
+  .hero h1 {
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: var(--step-3); line-height: .98; letter-spacing: -.03em;
+    margin: 0 0 1.1rem; text-wrap: balance;
+  }
+  .role-line {
+    font-family: var(--font-mono); font-size: var(--step-1); letter-spacing: -.01em;
+    margin-bottom: 1.6rem; color: var(--text);
+  }
+  .role-line .amp { color: var(--faint); font-weight: 400; }
+  .role-line .ai { color: var(--accent); }
+  .hero-pitch { font-size: var(--step-1); max-width: 60ch; color: var(--text); margin: 0 0 2rem; line-height: 1.55; }
+  .hero-pitch strong { color: var(--accent); font-weight: 600; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: 2.6rem; }
+  .btn {
+    font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: .02em;
+    padding: .8rem 1.3rem; border-radius: 6px; cursor: pointer; border: 1px solid transparent;
+    display: inline-flex; align-items: center; gap: .55rem; transition: transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
+  }
+  .btn-primary { background: var(--action); color: var(--action-ink); font-weight: 600; }
+  .btn-primary:hover { text-decoration: none; transform: translateY(-2px); box-shadow: 0 8px 22px color-mix(in srgb, var(--action) 40%, transparent); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
+  .btn-ghost:hover { text-decoration: none; border-color: var(--accent); color: var(--accent); }
+
+  /* status readout strip */
+  .readout {
+    display: grid; grid-template-columns: repeat(3, minmax(0,1fr));
+    border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+    background: var(--surface); box-shadow: var(--shadow);
+  }
+  .readout div { padding: 1rem 1.15rem; border-left: 1px solid var(--border); }
+  .readout div:first-child { border-left: 0; }
+  .readout .k { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+  .readout .v { font-family: var(--font-mono); font-size: var(--step-0); color: var(--text); margin-top: .35rem; font-variant-numeric: tabular-nums; }
+  .readout .v .hl { color: var(--accent); }
+  .status-live::before {
+    content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); margin-right: .5rem; vertical-align: middle;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+  @media (max-width: 620px) {
+    .readout { grid-template-columns: 1fr; }
+    .readout div { border-left: 0; border-top: 1px solid var(--border); }
+    .readout div:first-child { border-top: 0; }
+  }
+  .caret { display: inline-block; width: .6ch; background: var(--accent); color: transparent; margin-left: 1px; }
+
+  /* quantified-wins strip (AI section) */
+  .wins {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; margin-bottom: 1.9rem;
+  }
+  .wins > div { background: var(--surface); padding: 1.2rem 1.15rem; }
+  .wv { font-family: var(--font-mono); font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.5rem); color: var(--accent); letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .wk { font-size: .74rem; color: var(--muted); margin-top: .55rem; line-height: 1.4; }
+  @media (max-width: 720px) { .wins { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 420px) { .wins { grid-template-columns: 1fr; } }
+
+  /* ---------- services ---------- */
+  .card-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .svc {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.4rem 1.4rem 1.5rem; position: relative;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .svc:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .svc .num { font-family: var(--font-mono); font-size: .72rem; color: var(--accent); letter-spacing: .1em; }
+  .svc h3 { font-family: var(--font-mono); font-size: var(--step-1); margin: .5rem 0 .5rem; font-weight: 600; letter-spacing: -.01em; }
+  .svc p { color: var(--muted); font-size: var(--step--1); margin: 0; line-height: 1.6; }
+
+  /* ---------- AI projects ---------- */
+  .ai-note {
+    font-family: var(--font-mono); font-size: var(--step--1); color: var(--faint);
+    border-left: 2px solid var(--accent); padding: .2rem 0 .2rem .9rem; margin: -.4rem 0 2rem; max-width: 68ch; line-height: 1.6;
+  }
+  .proj-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .proj {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.5rem; display: flex; flex-direction: column; gap: .7rem;
+    transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  }
+  .proj:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-3px); }
+  .proj-head { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; }
+  .proj h3 { font-family: var(--font-mono); font-size: var(--step-1); margin: 0; font-weight: 600; letter-spacing: -.01em; }
+  .proj .slug { font-family: var(--font-mono); font-size: .68rem; color: var(--faint); letter-spacing: .06em; white-space: nowrap; }
+  .proj .angle { color: var(--accent); font-family: var(--font-mono); font-size: var(--step--1); line-height: 1.5; }
+  .proj p { margin: 0; color: var(--muted); font-size: var(--step--1); line-height: 1.6; }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .5rem; }
+  .tag {
+    font-family: var(--font-mono); font-size: .68rem; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 4px; padding: .18rem .45rem; letter-spacing: .02em;
+    background: var(--surface-2);
+  }
+  .badge-ship { color: var(--action); border-color: color-mix(in srgb, var(--action) 45%, var(--border)); }
+
+  /* ---------- experience timeline ---------- */
+  .timeline { display: grid; gap: 0; border-left: 1px solid var(--border); margin-left: .4rem; }
+  .job { position: relative; padding: 0 0 2rem 1.6rem; }
+  .job::before {
+    content: ""; position: absolute; left: -5px; top: .5rem; width: 9px; height: 9px;
+    border-radius: 50%; background: var(--ground); border: 2px solid var(--border-strong);
+  }
+  .job:first-child::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .job-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .8rem; }
+  .job h3 { font-size: var(--step-1); margin: 0; font-weight: 600; font-family: var(--font-sans); letter-spacing: -.01em; }
+  .job .co { color: var(--accent); font-weight: 600; }
+  .job .when { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); letter-spacing: .03em; margin-left: auto; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .job .where { font-family: var(--font-mono); font-size: .72rem; color: var(--muted); margin: .15rem 0 .5rem; letter-spacing: .02em; }
+  .job p { margin: 0; color: var(--muted); font-size: var(--step--1); line-height: 1.6; max-width: 70ch; }
+
+  /* ---------- skills ---------- */
+  .skill-groups { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .skill-group h3 { font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--faint); margin: 0 0 .8rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+  .chip {
+    font-family: var(--font-mono); font-size: var(--step--1); color: var(--text);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: .35rem .65rem;
+  }
+  .chip.hot { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); color: var(--accent); }
+
+  /* ---------- education ---------- */
+  .edu { display: grid; gap: .8rem; }
+  .edu-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .8rem; padding: 1rem 1.2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+  .edu-row h3 { margin: 0; font-size: var(--step-0); font-weight: 600; font-family: var(--font-sans); }
+  .edu-row .sch { color: var(--muted); }
+  .edu-row .yr { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); margin-left: auto; font-variant-numeric: tabular-nums; }
+
+  /* ---------- contact / footer ---------- */
+  #contact { text-align: left; }
+  .contact-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: clamp(1.6rem, 5vw, 2.6rem); box-shadow: var(--shadow);
+  }
+  .contact-card h2 { margin-bottom: .6rem; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.6rem; }
+  .clink {
+    font-family: var(--font-mono); font-size: var(--step--1);
+    border: 1px solid var(--border-strong); border-radius: 6px; padding: .7rem 1.1rem;
+    color: var(--text); display: inline-flex; gap: .55rem; align-items: center;
+  }
+  .clink:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .clink.mail { background: var(--action); color: var(--action-ink); border-color: transparent; font-weight: 600; }
+  .clink.mail:hover { color: var(--action-ink); transform: translateY(-2px); box-shadow: 0 8px 22px color-mix(in srgb, var(--action) 40%, transparent); }
+  .avail { font-family: var(--font-mono); font-size: var(--step--1); color: var(--accent); }
+
+  /* contact form */
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.8rem; }
+  .hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+  .field-row { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: .4rem; }
+  .field > span { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+  .field input, .field textarea {
+    font-family: var(--font-sans); font-size: var(--step-0); color: var(--text);
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 7px;
+    padding: .7rem .8rem; width: 100%; resize: vertical;
+  }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .field input::placeholder, .field textarea::placeholder { color: var(--faint); }
+  .form-foot { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .form-status { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+  .form-status.ok { color: var(--accent); }
+  .form-status.err { color: #e5734b; }
+
+  footer.foot { border-top: 1px solid var(--border); padding-block: 2rem; }
+  .foot-inner { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; align-items: center; justify-content: space-between; }
+  .foot-inner span { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); letter-spacing: .02em; }
+
+  /* ---------- motion (opt-in, JS-gated, reduced-motion-safe) ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .motion .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .motion .reveal.in { opacity: 1; transform: none; }
+    .blink { animation: blink 1.1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .job:first-child::before { animation: pulse 2.4s ease-out infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent-soft); } 70% { box-shadow: 0 0 0 8px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+  }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <span class="brand">kenny_brown<span class="dot">.</span>dev</span>
+    <div class="nav-links">
+      <a href="#services" class="nav-hide">/services</a>
+      <a href="#ai" class="nav-hide">/ai</a>
+      <a href="#experience" class="nav-hide">/experience</a>
+      <a href="#skills" class="nav-hide">/skills</a>
+      <a href="#contact">/contact</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle color theme">
+        <span id="themeIcon">◐</span><span id="themeLabel">theme</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header id="home" class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow mono reveal"><span class="prompt">kenny</span> ~/kennylbrown.com % whoami</div>
+    <h1 class="reveal">Kenny&nbsp;Brown</h1>
+    <div class="role-line reveal">Senior Software Developer <span class="amp">&amp;</span> <span class="ai">AI Prompt Engineer</span></div>
+    <p class="hero-pitch reveal">Twenty years shipping software — and now I point that experience at AI. I build
+      <strong>LLM-driven tooling and autonomous agents</strong> that do real work, then wire them into the
+      full-stack .NET and TypeScript systems I've shipped my whole career. Available for freelance &amp; consulting.</p>
+
+    <div class="cta-row reveal">
+      <a class="btn btn-primary" href="#contact">Work with me →</a>
+      <a class="btn btn-ghost" href="#ai">View AI work</a>
+    </div>
+
+    <div class="readout reveal">
+      <div><div class="k">Experience</div><div class="v"><span class="hl">20+</span> years shipping</div></div>
+      <div><div class="k">Core stack</div><div class="v">C# / .NET · TypeScript</div></div>
+      <div><div class="k status-live">Focus now</div><div class="v"><span class="hl">AI</span> agents &amp; prompts<span class="caret blink mono">█</span></div></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">/about</div>
+    <h2 class="reveal">Self-taught since 15. Still shipping.</h2>
+    <p class="lede reveal" style="font-size:var(--step-1);line-height:1.6;">
+      I've been writing software professionally for over 20 years — leading builds, rescuing and modernizing
+      legacy systems, and mentoring the teams around me. My foundation is enterprise C#/.NET and Angular,
+      hardened by agile, pair programming, and test-driven development. Lately I've paired that engineering
+      discipline with AI: designing prompts, building autonomous agents, and orchestrating LLM tooling that
+      ships — not demos. I like the hard, unglamorous problems: the abandoned codebase, the migration nobody
+      wants, the system that has to keep running.
+    </p>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">/services</div>
+    <h2 class="reveal">What I can build for you</h2>
+    <p class="lede reveal" style="margin-bottom:2rem;">Freelance &amp; consulting engagements, remote. Four things I do well:</p>
+    <div class="card-grid">
+      <div class="svc reveal">
+        <div class="num mono">01</div>
+        <h3>Full-stack delivery</h3>
+        <p>End-to-end enterprise apps in C#/.NET Core and Angular, backed by SQL and Microsoft Azure. Requirements to production, with CI/CD and performance tuning along the way.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="num mono">02</div>
+        <h3>Legacy modernization</h3>
+        <p>Inherited an abandoned or aging system? That's my specialty — I've rewritten legacy PHP into C#/.NET, rescued sites left by other developers, and led migrations without stopping the business.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="num mono">03</div>
+        <h3>AI &amp; prompt engineering</h3>
+        <p>LLM integration, prompt design, evaluations, and structured-output pipelines — practical AI features grafted onto real products, with guardrails and cost in mind.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="num mono">04</div>
+        <h3>Autonomous agents &amp; automation</h3>
+        <p>Agentic control loops and orchestration that actually run unattended: queues, model-by-effort budgeting, review gates, and self-healing. Automation that survives contact with the real world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ai">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">/ai — the differentiator</div>
+    <h2 class="reveal">AI &amp; prompt engineering, in production</h2>
+    <p class="ai-note reveal">Not demos — AI-assisted delivery running inside a real engineering team:
+      autonomous agents, multi-agent TDD pipelines, and verification guardrails. Client and employer
+      details redacted.</p>
+
+    <div class="wins reveal">
+      <div><div class="wv mono">30+</div><div class="wk">custom AI skills in production use</div></div>
+      <div><div class="wv mono">~120M</div><div class="wk">tokens/week auto-governed under a budget gate</div></div>
+      <div><div class="wv mono">7+</div><div class="wk">tickets shipped end-to-end by an overnight autonomous loop</div></div>
+      <div><div class="wv mono">8+</div><div class="wk">AI-assisted commands adopted across the team</div></div>
+    </div>
+
+    <div class="proj-grid">
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>Autonomous overnight engineering agent</h3><span class="slug mono">internal</span></div>
+        <div class="angle mono">Guardrailed autonomous loop that ships draft PRs overnight.</div>
+        <p>A scheduled loop where an AI agent independently pulls tickets from the team's tracker, investigates root cause, plans a fix, implements it, and opens a draft PR with generated test scenarios — never auto-merging. Governed by a token budget, clock windows, a kill switch, and an anti-rework ledger that caps retries per ticket to stop runaway loops.</p>
+        <div class="tags"><span class="tag mono">Claude Code</span><span class="tag mono">agent orchestration</span><span class="tag mono">autonomous agents</span><span class="tag mono">PowerShell</span></div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>Role-isolated multi-agent TDD pipeline</h3><span class="slug mono badge-ship">shipped</span></div>
+        <div class="angle mono">A 12-phase pipeline with deliberate context isolation between agents.</div>
+        <p>Splits feature and bug work across specialized agents — research, test-writing, implementation, review, spec-compliance, QA generation — each seeing only what it needs. Implementation agents are kept blind to acceptance criteria (they see only failing tests) to prevent "testing to the answer," while cheaper models handle review and stronger models handle code generation.</p>
+        <div class="tags"><span class="tag mono">multi-agent</span><span class="tag mono">Sonnet / Haiku</span><span class="tag mono">TDD</span><span class="tag mono">cost-tiered routing</span></div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>Verification-enforced SQL fix pipeline</h3><span class="slug mono badge-ship">shipped</span></div>
+        <div class="angle mono">Kills the "LLM says it's fixed but never ran it" failure mode.</div>
+        <p>After a database fix shipped on inspection alone and recurred in production within two weeks, I built a skill that forces any AI-authored stored-procedure change to compile and run against a real local database before it can be marked done — directly eliminating a recurring defect class caused by unverified LLM-asserted fixes.</p>
+        <div class="tags"><span class="tag mono">LLM verification</span><span class="tag mono">T-SQL</span><span class="tag mono">agentic-coding safety</span><span class="tag mono">CC skills</span></div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>Adversarial design-review agent</h3><span class="slug mono badge-ship">shipped</span></div>
+        <div class="angle mono">An adversarial interviewer that resolves every open branch before code.</div>
+        <p>A skill that interrogates a proposed plan adversarially until every open question and edge case is resolved. A variant cross-checks the plan against the project's domain vocabulary and architecture-decision records, updating them live as ambiguity clears. Packaged for reuse across projects.</p>
+        <div class="tags"><span class="tag mono">prompt engineering</span><span class="tag mono">requirements elicitation</span><span class="tag mono">ADR tooling</span></div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>LLM-assisted legacy modernization</h3><span class="slug mono badge-ship">shipped</span></div>
+        <div class="angle mono">Staged migration plans with automated before/after parity audits.</div>
+        <p>Used an LLM to plan and partially execute large modernization efforts — a framework version upgrade, a front-end architecture migration, and data-access-layer changes — generating multi-week staged execution plans plus automated functional-parity audits that compare old vs. new component behavior before cutover.</p>
+        <div class="tags"><span class="tag mono">LLM planning</span><span class="tag mono">.NET</span><span class="tag mono">Angular</span><span class="tag mono">parity auditing</span></div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>Team AI-workflow enablement</h3><span class="slug mono">internal</span></div>
+        <div class="angle mono">Turned personal tooling into a workflow the whole team adopted.</div>
+        <p>Authored internal docs and a library of slash-commands and prompts — ticket planning, implementation, backend and frontend test generation — so other developers and QA staff could adopt the same AI-assisted TDD workflow, including setup for connecting an MCP server to the team's work-tracking system.</p>
+        <div class="tags"><span class="tag mono">prompt engineering</span><span class="tag mono">MCP</span><span class="tag mono">developer enablement</span><span class="tag mono">technical writing</span></div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>Cost-aware model routing</h3><span class="slug mono">internal</span></div>
+        <div class="angle mono">Route low-stakes drafts local; reserve frontier models for the hard work.</div>
+        <p>Set up a local open-weight coding model to handle low-stakes draft text (documentation, retrospectives) while reserving cloud-hosted frontier models for code generation and reasoning-heavy work — concrete cost-aware model selection inside a production workflow.</p>
+        <div class="tags"><span class="tag mono">Ollama</span><span class="tag mono">local LLM</span><span class="tag mono">model selection</span><span class="tag mono">cost optimization</span></div>
+      </div>
+
+    </div>
+
+    <p class="ai-note reveal" style="margin-top:1.8rem;border-color:var(--faint);">
+      Also — independent R&amp;D I built to sharpen the craft: a reusable autonomous game-agent framework
+      (CDP heap-walk control loops across three engines), AI-driven C#/Harmony game mods with one published
+      on Nexus, and a live shipped HTML5 product with a generative-AI asset pipeline. Details on request.</p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">/experience</div>
+    <h2 class="reveal">20 years, seven roles</h2>
+    <div class="timeline">
+      <div class="job reveal">
+        <div class="job-top"><h3><span class="co">Triskelle Software Solutions</span> — Senior Web Developer</h3><span class="when">Sep 2020 — Present</span></div>
+        <div class="where">Remote</div>
+        <p>Senior developer across multiple enterprise applications in C#, .NET Core, SQL, and Angular. Lead development efforts and code reviews, gather requirements with clients to design scalable solutions, stand up CI/CD pipelines on Microsoft Azure, and mentor junior developers.</p>
+      </div>
+      <div class="job reveal">
+        <div class="job-top"><h3><span class="co">Resolve Physician Agency</span> — Senior Web Developer</h3><span class="when">Jan 2020 — Sep 2020</span></div>
+        <div class="where">Columbia, MO / Remote</div>
+        <p>Led cleanup and repair of an external website abandoned by a previous developer, working directly with stakeholders to gather requirements. Stack: .NET Core, Angular 2+, Microsoft Azure.</p>
+      </div>
+      <div class="job reveal">
+        <div class="job-top"><h3><span class="co">KB Software, LLC</span> — Senior Developer / Owner</h3><span class="when">Oct 2018 — Jan 2020</span></div>
+        <div class="where">Ashland, MO</div>
+        <p>Ran software projects in partnership with Altec Design, LLC, delivering work across PHP (Laravel), Angular 2+, WordPress, Phaser 3 (TypeScript), and Unity 2D.</p>
+      </div>
+      <div class="job reveal">
+        <div class="job-top"><h3><span class="co">Veterans United Home Loans</span> — Web Application Developer</h3><span class="when">Jun 2012 — Sep 2018</span></div>
+        <div class="where">Columbia, MO</div>
+        <p>Key member of a small team that rewrote and upgraded an aging PHP system into C#/.NET. Worked agile with pair programming and TDD, led multiple projects end to end, and guided system migration and redevelopment.</p>
+      </div>
+      <div class="job reveal">
+        <div class="job-top"><h3><span class="co">Altec Design, LLC</span> — Web Application Developer</h3><span class="when">Jun 2012 — Jan 2015</span></div>
+        <div class="where">Part-time · Remote</div>
+        <p>Designed and built web applications for a range of clients — configuring servers, managing databases, and developing UI/UX. Delivered a mobile-friendly site for a major St. Louis car dealership.</p>
+      </div>
+      <div class="job reveal">
+        <div class="job-top"><h3><span class="co">Veterans United Home Loans</span> — Developer Support Specialist</h3><span class="when">Sep 2010 — May 2012</span></div>
+        <div class="where">Columbia, MO</div>
+        <p>Built bug patches and acted as liaison between users and the development team, then rewrote the support-desk application to improve its UI and support efficiency.</p>
+      </div>
+      <div class="job reveal">
+        <div class="job-top"><h3><span class="co">Home Movie Depot</span> — Web Developer / System Support</h3><span class="when">Aug 2005 — Sep 2010</span></div>
+        <div class="where">Ashland, MO</div>
+        <p>Automated internal processes with Python — earning a promotion onto the web team — then built new Zen Cart modules, integrated updates, and improved SEO and UX.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">/skills</div>
+    <h2 class="reveal">Toolbox</h2>
+    <div class="skill-groups">
+      <div class="skill-group reveal">
+        <h3>Languages</h3>
+        <div class="chips"><span class="chip">C#</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Python</span><span class="chip">PHP</span><span class="chip">SQL</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Web &amp; frameworks</h3>
+        <div class="chips"><span class="chip">.NET Core</span><span class="chip">Angular 2+</span><span class="chip">Laravel</span><span class="chip">Node.js</span><span class="chip">React</span><span class="chip">Pixi.js</span><span class="chip">Vite</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>AI engineering</h3>
+        <div class="chips"><span class="chip hot">Prompt engineering</span><span class="chip hot">Claude Code</span><span class="chip hot">Multi-agent pipelines</span><span class="chip hot">Autonomous agents</span><span class="chip hot">LLM evals</span><span class="chip hot">LLM verification</span><span class="chip hot">Adversarial requirements</span><span class="chip hot">Migration planning</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>AI tooling &amp; workflow</h3>
+        <div class="chips"><span class="chip">MCP servers</span><span class="chip">Skill / command authoring</span><span class="chip">Cost-tiered routing</span><span class="chip">Local LLM (Ollama)</span><span class="chip">Structured-output handoffs</span><span class="chip">Git worktree isolation</span><span class="chip">CDP automation</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Cloud &amp; data</h3>
+        <div class="chips"><span class="chip">Microsoft Azure</span><span class="chip">SQL Server</span><span class="chip">Supabase</span><span class="chip">Vercel</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Practices</h3>
+        <div class="chips"><span class="chip">Agile</span><span class="chip">TDD</span><span class="chip">Pair programming</span><span class="chip">CI/CD</span><span class="chip">Code review</span><span class="chip">Mentoring</span><span class="chip">Performance tuning</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">/education</div>
+    <h2 class="reveal">Education</h2>
+    <div class="edu">
+      <div class="edu-row reveal">
+        <h3>B.S., Computer Information Systems</h3>
+        <span class="sch">DeVry University</span>
+        <span class="yr mono">2007 — 2011</span>
+      </div>
+      <div class="edu-row reveal">
+        <h3>A.A.S., Computer Programming</h3>
+        <span class="sch">Linn State Technical College</span>
+        <span class="yr mono">2002 — 2004</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">/contact</div>
+    <div class="contact-card reveal">
+      <h2>Let's build something.</h2>
+      <p class="lede">Freelance and consulting inquiries welcome — full-stack delivery, legacy rescue, or getting
+        real AI into your product. Message me on LinkedIn, or drop a note below.</p>
+      <div class="contact-links">
+        <a class="clink mail" href="https://www.linkedin.com/in/brownkenny/" target="_blank" rel="noopener">in&nbsp; Message me on LinkedIn</a>
+        <a class="clink" href="https://github.com/kbsoftwarellc" target="_blank" rel="noopener">⌥ GitHub</a>
+      </div>
+
+      <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms: paste your access key below (free, no account — get one at web3forms.com). Until then the form shows a LinkedIn fallback. -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="subject" value="New message from kennylbrown.com">
+        <input type="hidden" name="from_name" value="kennylbrown.com contact form">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field-row">
+          <label class="field"><span>Name</span>
+            <input type="text" name="name" required autocomplete="name" placeholder="Your name"></label>
+          <label class="field"><span>Email</span>
+            <input type="email" name="email" required autocomplete="email" placeholder="you@company.com"></label>
+        </div>
+        <label class="field"><span>Message</span>
+          <textarea name="message" rows="4" required placeholder="What are you building?"></textarea></label>
+        <div class="form-foot">
+          <button type="submit" class="btn btn-primary">Send message →</button>
+          <span class="form-status mono" id="formStatus" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+
+      <p class="avail" style="margin-top:1.6rem;">● Available for freelance &amp; consulting</p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>© <span id="yr">2026</span> Kenny Brown · kennylbrown.com</span>
+    <span>Senior Software Developer &amp; AI Prompt Engineer</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+
+    /* ---- theme toggle ---- */
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    function currentTheme() {
+      var set = root.getAttribute("data-theme");
+      if (set) return set;
+      return mq.matches ? "dark" : "light";
+    }
+    function paintToggle() {
+      var t = currentTheme();
+      var icon = document.getElementById("themeIcon");
+      var label = document.getElementById("themeLabel");
+      if (icon) icon.textContent = t === "dark" ? "☀" : "☾";
+      if (label) label.textContent = t === "dark" ? "light" : "dark";
+    }
+    var btn = document.getElementById("themeBtn");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        root.setAttribute("data-theme", currentTheme() === "dark" ? "light" : "dark");
+        paintToggle();
+      });
+    }
+    mq.addEventListener && mq.addEventListener("change", paintToggle);
+    paintToggle();
+
+    /* ---- reveal on scroll (motion-safe, no-JS-safe) ---- */
+    var motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (motionOK && "IntersectionObserver" in window) {
+      root.classList.add("motion");
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+      document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+    }
+
+    /* ---- active nav link on scroll ---- */
+    var links = Array.prototype.slice.call(document.querySelectorAll(".nav-links a[href^='#']"));
+    var map = {};
+    links.forEach(function (a) { var id = a.getAttribute("href").slice(1); var s = document.getElementById(id); if (s) map[id] = a; });
+    if ("IntersectionObserver" in window) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            links.forEach(function (l) { l.classList.remove("active"); });
+            var a = map[e.target.id]; if (a) a.classList.add("active");
+          }
+        });
+      }, { rootMargin: "-45% 0px -50% 0px" });
+      Object.keys(map).forEach(function (id) { spy.observe(document.getElementById(id)); });
+    }
+
+    /* ---- contact form (Web3Forms) — no email exposed; graceful fallbacks ---- */
+    var form = document.getElementById("contactForm");
+    if (form) {
+      var status = document.getElementById("formStatus");
+      function say(msg, cls) { if (status) { status.textContent = msg; status.className = "form-status mono" + (cls ? " " + cls : ""); } }
+      form.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        var keyEl = form.querySelector("[name=access_key]");
+        if (!keyEl || keyEl.value === "YOUR_WEB3FORMS_ACCESS_KEY") {
+          say("Form isn't wired up yet — please reach me on LinkedIn.", "err");
+          return;
+        }
+        say("Sending…");
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST", body: new FormData(form), headers: { "Accept": "application/json" }
+        }).then(function (r) { return r.json(); })
+          .then(function (j) {
+            if (j && j.success) { form.reset(); say("Thanks — I'll be in touch.", "ok"); }
+            else { say("Something went wrong — try LinkedIn instead.", "err"); }
+          })
+          .catch(function () { say("Network error — try LinkedIn instead.", "err"); });
+      });
+    }
+  })();
+</script>
+</body>
+</html>
