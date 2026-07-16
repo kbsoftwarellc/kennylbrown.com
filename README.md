@@ -20,7 +20,8 @@ git push
 GitHub Pages redeploys within ~1 minute.
 
 ## Contact form
-The contact form uses [Web3Forms](https://web3forms.com) (free, no server needed). Paste your
-access key into the hidden `access_key` input in the contact `<form>` (search the file for
-`YOUR_WEB3FORMS_ACCESS_KEY`). Messages are forwarded to your email without exposing the address
-on the page. Until a real key is set, the form shows a LinkedIn fallback message.
+The contact form uses [Web3Forms](https://web3forms.com) (free, no server needed). The public
+`access_key` is already set in the hidden input in the contact `<form>`; messages are forwarded
+to the registered email without exposing the address on the page. A honeypot field (`botcheck`)
+filters bots. To point submissions at a different inbox, generate a new key at web3forms.com and
+replace the `access_key` value.
