@@ -147,6 +147,7 @@
   }
   .theme-btn:hover { color: var(--text); border-color: var(--border-strong); }
   @media (max-width: 640px) { .nav-links a.nav-hide { display: none; } }
+  @media (max-width: 820px) { .nav-links a.nav-wide { display: none; } }
 
   /* ---------- shared section chrome ---------- */
   section { padding-block: clamp(3rem, 8vw, 5.5rem); border-top: 1px solid var(--border); }
@@ -247,6 +248,7 @@
     border-left: 2px solid var(--accent); padding: .2rem 0 .2rem .9rem; margin: -.4rem 0 2rem; max-width: 68ch; line-height: 1.6;
   }
   .proj-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .proj-grid.pair { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
   .proj {
     background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
     padding: 1.5rem; display: flex; flex-direction: column; gap: .7rem;
@@ -357,6 +359,7 @@
     <div class="nav-links">
       <a href="#services" class="nav-hide">/services</a>
       <a href="#ai" class="nav-hide">/ai</a>
+      <a href="#studio" class="nav-hide nav-wide">/studio</a>
       <a href="#experience" class="nav-hide">/experience</a>
       <a href="#skills" class="nav-hide">/skills</a>
       <a href="#contact">/contact</a>
@@ -502,10 +505,60 @@
 
     </div>
 
+  </div>
+</section>
+
+<section id="studio">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">/studio — independent · KB Software, LLC</div>
+    <h2 class="reveal">An AI-agent studio, shipping in public</h2>
+    <p class="ai-note reveal">My own studio, run outside the day job. Claude Code agents build, test, and release
+      under my direction; I own the product calls, the review, and the playtesting. Since July 2026 it has
+      shipped a catalogue of game mods for Unity and Unreal titles, published under a studio name on a major
+      mod marketplace. Links to the live work on request.</p>
+
+    <div class="wins reveal">
+      <div><div class="wv mono">30+</div><div class="wk">products shipped and maintained since July 2026</div></div>
+      <div><div class="wv mono">14k+</div><div class="wk">unique users have downloaded them</div></div>
+      <div><div class="wv mono">470+</div><div class="wk">endorsements from players</div></div>
+      <div><div class="wv mono">Top 10</div><div class="wk">of 570+ new authors in its marketplace section</div></div>
+    </div>
+
+    <div class="proj-grid pair">
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>Agent-run release pipeline</h3><span class="slug mono badge-ship">shipped</span></div>
+        <div class="angle mono">One command takes a merged change to two storefronts.</div>
+        <p>Each release builds against the oldest game version it claims to support, cuts a git tag and a GitHub release, and uploads through the marketplace API. A second site with no write API is published by driving its web UI over the Chrome DevTools Protocol. A ship audit then checks every live listing against its repo, and the public catalogue page regenerates itself.</p>
+        <div class="tags"><span class="tag mono">release automation</span><span class="tag mono">CDP</span><span class="tag mono">GitHub releases</span><span class="tag mono">Python</span></div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>Headless verification rigs</h3><span class="slug mono badge-ship">shipped</span></div>
+        <div class="angle mono">Nothing is done until it has been seen running.</div>
+        <p>Dedicated game servers and a windowless game client that the agents start and drive themselves. A change passes only when its boot log and captured frames prove it works. A cgroup memory-budget scheduler queues heavy test jobs so they never starve the interactive work on the same machine.</p>
+        <div class="tags"><span class="tag mono">test rigs</span><span class="tag mono">headless clients</span><span class="tag mono">cgroups</span><span class="tag mono">systemd</span></div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>Runtime modding in two engines</h3><span class="slug mono badge-ship">shipped</span></div>
+        <div class="angle mono">Changing live game code without its source.</div>
+        <p>C# Harmony patches into a Unity game, including server-only builds that run with anti-cheat on and stay compatible with unmodded players, plus C++ and Lua mods on Unreal through UE4SS. Every mod declares the game versions it supports, and the catalogue is localized for Russian and Simplified Chinese players.</p>
+        <div class="tags"><span class="tag mono">C# / Harmony</span><span class="tag mono">Unity</span><span class="tag mono">UE4SS</span><span class="tag mono">C++ / Lua</span></div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-head"><h3>Marketplace analytics</h3><span class="slug mono">internal</span></div>
+        <div class="angle mono">Measure the field instead of guessing.</div>
+        <p>A census of all 9,000+ mods in the marketplace section, pulled over its public GraphQL API, ranks the catalogue against every other author and normalizes trends to site-wide traffic. A coverage finder searches video and forum archives for third-party reviews that never tag the author.</p>
+        <div class="tags"><span class="tag mono">GraphQL</span><span class="tag mono">data analysis</span><span class="tag mono">Python</span><span class="tag mono">research tooling</span></div>
+      </div>
+
+    </div>
+
     <p class="ai-note reveal" style="margin-top:1.8rem;border-color:var(--faint);">
-      Also — independent R&amp;D I built to sharpen the craft: a reusable autonomous game-agent framework
-      (CDP heap-walk control loops across three engines), AI-driven C#/Harmony game mods with one published
-      on Nexus, and a live shipped HTML5 product with a generative-AI asset pipeline. Details on request.</p>
+      Also — independent R&amp;D: a reusable autonomous game-agent framework (CDP heap-walk control loops
+      across three engines) and a live shipped HTML5 product with a generative-AI asset pipeline. Details on request.</p>
   </div>
 </section>
 
@@ -527,7 +580,7 @@
       <div class="job reveal">
         <div class="job-top"><h3><span class="co">KB Software, LLC</span> — Owner / Independent Consultant</h3><span class="when">Oct 2018 — Present</span></div>
         <div class="where">Remote · US Central</div>
-        <p>My own software consultancy. Earlier engagements ran in partnership with Altec Design, LLC across PHP (Laravel), Angular 2+, WordPress, Phaser 3 (TypeScript), and Unity 2D. Active today as my vehicle for independent AI and full-stack consulting — LLM tooling, autonomous-agent development, and modernization of legacy C#/.NET and TypeScript systems.</p>
+        <p>My own software consultancy. Earlier engagements ran in partnership with Altec Design, LLC across PHP (Laravel), Angular 2+, WordPress, Phaser 3 (TypeScript), and Unity 2D. Active today as my vehicle for independent AI and full-stack consulting — LLM tooling, autonomous-agent development, and modernization of legacy C#/.NET and TypeScript systems — and home of my AI-agent studio, which has shipped 30+ game-mod products since July 2026.</p>
       </div>
       <div class="job reveal">
         <div class="job-top"><h3><span class="co">Veterans United Home Loans</span> — Web Application Developer</h3><span class="when">Jun 2012 — Sep 2018</span></div>
@@ -563,8 +616,8 @@
         <div class="chips"><span class="chip">C#</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Python</span><span class="chip">PHP</span><span class="chip">SQL</span></div>
       </div>
       <div class="skill-group reveal">
-        <h3>Web &amp; frameworks</h3>
-        <div class="chips"><span class="chip">.NET Core</span><span class="chip">Angular 2+</span><span class="chip">Laravel</span><span class="chip">Node.js</span><span class="chip">React</span><span class="chip">Pixi.js</span><span class="chip">Vite</span></div>
+        <h3>Frameworks &amp; engines</h3>
+        <div class="chips"><span class="chip">.NET Core</span><span class="chip">Angular 2+</span><span class="chip">Laravel</span><span class="chip">Node.js</span><span class="chip">React</span><span class="chip">Pixi.js</span><span class="chip">Vite</span><span class="chip">Unity</span><span class="chip">Harmony (C#)</span><span class="chip">Unreal UE4SS</span></div>
       </div>
       <div class="skill-group reveal">
         <h3>AI engineering</h3>
@@ -572,11 +625,11 @@
       </div>
       <div class="skill-group reveal">
         <h3>AI tooling &amp; workflow</h3>
-        <div class="chips"><span class="chip">MCP servers</span><span class="chip">Skill / command authoring</span><span class="chip">Cost-tiered routing</span><span class="chip">Local LLM (Ollama)</span><span class="chip">Structured-output handoffs</span><span class="chip">Git worktree isolation</span><span class="chip">CDP automation</span></div>
+        <div class="chips"><span class="chip">MCP servers</span><span class="chip">Skill / command authoring</span><span class="chip">Cost-tiered routing</span><span class="chip">Local LLM (Ollama)</span><span class="chip">Structured-output handoffs</span><span class="chip">Git worktree isolation</span><span class="chip">CDP automation</span><span class="chip">Release automation</span><span class="chip">Headless test rigs</span></div>
       </div>
       <div class="skill-group reveal">
         <h3>Cloud &amp; data</h3>
-        <div class="chips"><span class="chip">Microsoft Azure</span><span class="chip">SQL Server</span><span class="chip">Supabase</span><span class="chip">Vercel</span></div>
+        <div class="chips"><span class="chip">Microsoft Azure</span><span class="chip">SQL Server</span><span class="chip">Supabase</span><span class="chip">Vercel</span><span class="chip">GraphQL</span><span class="chip">GitHub Actions</span><span class="chip">Linux / systemd</span></div>
       </div>
       <div class="skill-group reveal">
         <h3>Practices</h3>
